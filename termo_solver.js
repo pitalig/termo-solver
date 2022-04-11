@@ -68,7 +68,7 @@ var global_result = ''
 const prompt = require('prompt-sync')();
 
 while (global_guess != 'exit') {
-    global_guess = removeAccent(prompt('Tentativa: ')).split('');
-    global_result = removeAccent(prompt('Qual foi o resultado dessa tentativa? ')).normalize("NFD").split('');
+    global_guess = removeAccent(prompt('Tentativa: ').toLowerCase()).split('');
+    global_result = prompt('Qual foi o resultado dessa tentativa? ').toLowerCase().normalize("NFD").split('');
     review(global_guess, global_result);
 }
