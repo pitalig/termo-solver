@@ -33,9 +33,6 @@ function wrong(letter, words) {
 var tested_letters = new Set([])
 var pending_letters = new Set(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'])
 
-// var array3 = [...new Set([...array1,...array2])]
-// console.log(array3)
-
 function review(guess, result) {
     guess.forEach((letter, index) => {
         tested_letters.add(letter)
