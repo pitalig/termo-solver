@@ -42,14 +42,14 @@ function review(guess, result) {
         pending_letters.delete(letter)
         const letter_result = result[index]
 
-        // b = black
-        // g = green
-        // o = orange
+        // p = preto
+        // v = verde
+        // l = laranja
 
-        if (letter_result == 'g') {
+        if (letter_result == 'v') {
             uncommon_valid_words = correct(letter, index, uncommon_valid_words)
             common_valid_words = correct(letter, index, common_valid_words)
-        } else if (letter_result == 'o') {
+        } else if (letter_result == 'l') {
             uncommon_valid_words = exists(letter, index, uncommon_valid_words)
             common_valid_words = exists(letter, index, common_valid_words)
         } else {
@@ -89,6 +89,21 @@ var global_result = ''
 const prompt = require('prompt-sync')();
 
 while (global_guess != 'exit') {
+    console.log("========================")
+    console.log("Para começar você deve fazer uma tentativa inicial e colocar o resultado aqui")
+    console.log("\"Tentativa\" representa a palavra que você inseriu")
+    console.log("\"Resultado\" representa as cores que as letras receberam após sua tentativa")
+    console.log("Para inserir o resultado, deve ser utilizada a seguinte conversão de cores para letras:")
+    console.log("v para verde (a letra faz parte da palavra e está na posição correta)")
+    console.log("l para laranja (a letra faz parte da palavra e mas em outra posição)")
+    console.log("p para preto (a letra não faz parte da palavra)")
+    console.log("Exemplo: para a tentativa for \"turma\", o jogo informou que:")
+    console.log(" - A letra 't' está verde (letra e posição corretas)")
+    console.log(" - A letra 'u' está laranja (letra correta mas em outra posição)")
+    console.log(" - O restante das letras estão incorretas")
+    console.log("Você deve inserir o resultado aqui como: vlppp")
+    console.log("========================")
+    console.log("")
     global_guess = removeAccent(prompt('Tentativa: ').toLowerCase()).split('');
     global_result = prompt('Qual foi o resultado dessa tentativa? ').toLowerCase().split('');
     review(global_guess, global_result);
