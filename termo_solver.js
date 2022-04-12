@@ -55,10 +55,18 @@ function review(guess, result) {
             common_valid_words = wrong(letter, common_valid_words)
         }
     })
+
+    var possible_letters = new Set([])
+    common_valid_words.forEach(word => {
+        word.split('').forEach(letter => possible_letters.add(letter))
+    });
+    var letters_to_test = new Set(Array.from(possible_letters).filter(x => pending_letters.has(x)))
+
     console.log("Letras já testadas: ", tested_letters)
     console.log("Letras pendentes: ", pending_letters)
     console.log("Possíveis palavras comuns: ", common_valid_words)
     console.log("Possíveis palavras incomuns: ", uncommon_valid_words)
+    console.log("Letras pendentes que estão nas palavras comuns: ", letters_to_test)
     return
 }
 
@@ -69,6 +77,6 @@ const prompt = require('prompt-sync')();
 
 while (global_guess != 'exit') {
     global_guess = removeAccent(prompt('Tentativa: ').toLowerCase()).split('');
-    global_result = prompt('Qual foi o resultado dessa tentativa? ').toLowerCase().normalize("NFD").split('');
+    global_result = prompt('Qual foi o resultado dessa tentativa? ').toLowerCase().split('');
     review(global_guess, global_result);
 }
